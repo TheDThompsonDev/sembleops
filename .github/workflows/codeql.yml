@@ -32,4 +32,4 @@ jobs:
           languages: javascript-typescript
 
       - name: Analyze
-        uses: github/codeql-action/analyze@eb3cef721752a3421fe144a742539281bdf4df1a # v3
+        uses: github/codeql-action/analyze@e60ea984bd3baa95954f2856bcf24f9eaba46637 # v3

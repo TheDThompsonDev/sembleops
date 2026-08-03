@@ -1,0 +1,88 @@
+name: Bug report
+description: Report a reproducible problem using synthetic or redacted data.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve SembleOps. Search existing issues first. Never include API keys, tokens, cookies, private prompts, task data, databases, proprietary code, access links, or unredacted logs.
+
+        Report suspected vulnerabilities through the private security link instead of this form.
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      description: Provide the release version or commit SHA you tested.
+      placeholder: v0.1.0 or 710f8c6
+    validations:
+      required: true
+  - type: dropdown
+    id: deployment
+    attributes:
+      label: Deployment mode
+      options:
+        - Local development
+        - Local production build
+        - Docker or VPS
+        - Fly.io
+        - Hub with remote worker
+        - Other self-hosted environment
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Node.js version, browser, and relevant runtime. Do not include machine names or private paths.
+      placeholder: Windows 11, Node.js 22, Firefox
+    validations:
+      required: true
+  - type: textarea
+    id: summary
+    attributes:
+      label: Problem
+      description: Describe the failure and its impact.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: List the smallest sequence that reproduces the problem using synthetic data.
+      placeholder: |
+        1. Start with...
+        2. Submit...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Redacted diagnostic information
+      description: Optional minimal logs or screenshots. Replace all identifiers and secrets before uploading.
+      render: shell
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I searched existing issues and pull requests.
+          required: true
+        - label: I removed credentials, personal data, private paths, task content, and proprietary code from this report.
+          required: true
+        - label: This is not a vulnerability report requiring private disclosure.
+          required: true

@@ -1,0 +1,70 @@
+name: Focused feature proposal
+description: Propose an improvement that preserves explicit trust and cost boundaries.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Start with the user problem rather than a large implementation. Significant architecture changes require early alignment and a threat-model review.
+  - type: textarea
+    id: problem
+    attributes:
+      label: User problem
+      description: Who is affected, what are they trying to do, and why is the current behavior insufficient?
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Proposed outcome
+      description: Describe the smallest useful outcome and observable acceptance criteria.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Include existing configuration, documentation, or external tools that may already address the problem.
+    validations:
+      required: true
+  - type: dropdown
+    id: boundary
+    attributes:
+      label: Primary area affected
+      options:
+        - Local user experience
+        - Accessibility
+        - Documentation or onboarding
+        - Agent runtime or provider integration
+        - Discord or notification integration
+        - Deployment or operations
+        - Storage, privacy, or security boundary
+        - Developer tooling or tests
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Security, privacy, compatibility, and cost impact
+      description: Identify new credentials, network routes, stored data, migrations, provider charges, or permissions. Write "None identified" only after reviewing each category.
+    validations:
+      required: true
+  - type: textarea
+    id: contribution
+    attributes:
+      label: Contribution interest
+      description: Optional. Say whether you can help with design, implementation, testing, documentation, or review.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Scope checks
+      options:
+        - label: I searched existing issues, pull requests, and the roadmap.
+          required: true
+        - label: This proposal does not assume maintainer-hosted infrastructure or shared provider credentials.
+          required: true
+        - label: I understand that acceptance and delivery are not guaranteed.
+          required: true

@@ -30,7 +30,7 @@ Community leaders are responsible for clarifying and enforcing these standards. 
 
 ## Scope
 
-This Code of Conduct applies in project spaces and when an individual officially represents the project in public spaces.
+This Code of Conduct applies in project spaces and when an individual officially represents the project in public spaces. Project spaces include the repository, issue tracker, pull requests, GitHub Discussions, official community Discord channels, community calls, and project-organized events.
 
 ## Reporting and enforcement
 

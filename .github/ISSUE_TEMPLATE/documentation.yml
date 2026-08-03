@@ -1,0 +1,53 @@
+name: Documentation improvement
+description: Report a missing, incorrect, unsafe, or confusing documentation step.
+title: "[Docs]: "
+labels:
+  - documentation
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Documentation fixes are excellent first contributions. Do not paste real credentials, private URLs, machine-specific paths, or unredacted screenshots.
+  - type: input
+    id: location
+    attributes:
+      label: Documentation location
+      description: Link the page, file, heading, or command that needs improvement.
+      placeholder: README.md — Quick start
+    validations:
+      required: true
+  - type: textarea
+    id: gap
+    attributes:
+      label: What is unclear or incorrect?
+      description: Explain what a reader may misunderstand or be unable to complete.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Suggested improvement
+      description: Optional wording, structure, example, or acceptance criteria.
+    validations:
+      required: true
+  - type: dropdown
+    id: risk
+    attributes:
+      label: Does this involve credentials, deployment, privacy, or destructive operations?
+      options:
+        - "No"
+        - "Yes — credentials or secret handling"
+        - "Yes — deployment or provider cost"
+        - "Yes — privacy or stored data"
+        - "Yes — destructive or irreversible operation"
+    validations:
+      required: true
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety checks
+      options:
+        - label: I used placeholders and synthetic examples only.
+          required: true
+        - label: I searched for an existing issue covering this documentation gap.
+          required: true

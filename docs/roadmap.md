@@ -42,4 +42,4 @@ Proposals that change these non-goals need a separate architecture and threat mo
 
 ## Suggesting work
 
-Open a focused issue describing the user problem, trust-boundary impact, provider/cost implications, and a small acceptance test. See [CONTRIBUTING.md](../CONTRIBUTING.md) before proposing a large change.
+Open a focused issue describing the user problem, trust-boundary impact, provider/cost implications, and a small acceptance test. See the [community guide](community.md) and [CONTRIBUTING.md](../CONTRIBUTING.md) before proposing a large change.

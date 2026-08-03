@@ -97,6 +97,17 @@ Provider usage is governed by that provider's terms and billing. Set provider-si
 
 See [Deployment](docs/deployment.md) before binding to a non-loopback interface. SQLite deployments must run a single hub instance.
 
+## Community and contributing
+
+SembleOps welcomes contributions from users of every experience level. You do not need to write application code to help: reproducible bug reports, documentation fixes, accessibility reviews, tests, deployment notes, and careful issue triage are all valuable.
+
+- Use the community Discord for informal conversation, demos, and early idea-shaping. Never post credentials, private prompts, task data, logs containing secrets, or proprietary repository content.
+- Use GitHub issues for reproducible bugs and scoped work. Decisions made in chat should be summarized on GitHub so contributors who are not in Discord can participate.
+- Open an issue before investing in a large feature or architecture change.
+- Report vulnerabilities privately through the repository Security page, never in Discord or a public issue.
+
+Start with the [community guide](docs/community.md), then read [CONTRIBUTING.md](CONTRIBUTING.md) and [GOVERNANCE.md](GOVERNANCE.md). Participation in every project space, including an official community Discord, is governed by [the Code of Conduct](CODE_OF_CONDUCT.md).
+
 ## Security and privacy
 
 The database may contain task text, prompts, model output, Discord identifiers, and operational metadata. Agent prompts or results may also contain content from code repositories. Review:
@@ -114,6 +125,8 @@ Never commit `.env`, `config/sembleops.yaml`, databases, transcripts, artifacts,
 - [Data and privacy](docs/data-and-privacy.md)
 - [Threat model](docs/threat-model.md)
 - [Roadmap](docs/roadmap.md)
+- [Community guide](docs/community.md)
+- [Governance](GOVERNANCE.md)
 - [Maintainer guide](docs/maintainer-guide.md)
 - [Contributing](CONTRIBUTING.md)
 - [Support](SUPPORT.md)

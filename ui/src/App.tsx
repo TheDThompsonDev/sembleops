@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 import { api } from "./api";
 import { AgentBadge } from "./Badge";
 import { ContentStudio } from "./ContentStudio";
@@ -896,19 +896,35 @@ function SessionsPage({ meta, onOpenPacket }: { meta: Meta | null; onOpenPacket:
     return () => clearInterval(id);
   }, []);
 
+  const openOnActivate = (id: string, title: string) => (e: React.KeyboardEvent | React.MouseEvent) => {
+    if ("key" in e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+    }
+    onOpenPacket(id);
+  };
+
   return (
     <section className="simple-page">
       <h1>Sessions</h1>
       {dels.length === 0 && <div className="empty">No delegations yet.</div>}
       {dels.map((d) => (
-        <article key={d.id} className="session-card clickable" onClick={() => onOpenPacket(d.id)}>
+        <article
+          key={d.id}
+          className="session-card clickable"
+          role="button"
+          tabIndex={0}
+          aria-label={`Open session: ${d.title}`}
+          onClick={openOnActivate(d.id, d.title)}
+          onKeyDown={openOnActivate(d.id, d.title)}
+        >
           <AgentBadge slug={d.agent} color={color(meta, d.agent)} size={40} />
           <div>
             <div className="session-title">{d.title}</div>
             <div className="card-meta">{name(meta, d.agent)} · {d.status}{d.runtime ? ` · ${d.runtime}` : ""}</div>
             {d.result && <p className="card-meta">{previewText(d.result, 160)}</p>}
           </div>
-          <span className="session-open">Open</span>
+          <span className="session-open" aria-hidden="true">Open</span>
         </article>
       ))}
       <h2>Marco's routing log</h2>

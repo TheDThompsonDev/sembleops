@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type MouseEvent } from "react";
 import { api } from "./api";
 import { AgentBadge } from "./Badge";
 import { ContentStudio } from "./ContentStudio";
@@ -437,8 +437,25 @@ function TaskDecisionCard({
     selected ? "selected" : "",
   ].filter(Boolean).join(" ");
 
+  // ponytail: whole-card select only; nested controls stopPropagation already
+  const selectOnActivate = (e: KeyboardEvent | MouseEvent) => {
+    if ("key" in e) {
+      if (e.key !== "Enter" && e.key !== " ") return;
+      e.preventDefault();
+    }
+    onSelect();
+  };
+
   return (
-    <article className={cardClass} onClick={onSelect}>
+    <article
+      className={cardClass}
+      role="button"
+      tabIndex={0}
+      aria-pressed={selected}
+      aria-label={`Select decision: ${task.title}`}
+      onClick={selectOnActivate}
+      onKeyDown={selectOnActivate}
+    >
       {featured ? (
         <>
           <div className="featured-main">

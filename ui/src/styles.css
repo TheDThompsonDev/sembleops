@@ -646,6 +646,13 @@ h2 {
   box-shadow: 0 16px 42px rgba(37, 99, 235, 0.12);
 }
 
+.decision-card:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-color: #bdd0ff;
+  box-shadow: 0 16px 42px rgba(37, 99, 235, 0.16);
+}
+
 .decision-card.forced {
   background: linear-gradient(180deg, #fbfffd 0%, #ffffff 100%);
 }

@@ -174,7 +174,7 @@ function IdeaCapture({
         <h2 id="idea-capture-title">Empty your head. Keep every good spark.</h2>
         <p>Import up to 100 ideas at once. An 80-item Markdown list becomes 80 separate Inbox cards.</p>
       </div>
-      <div className="idea-capture-input">
+      <div className="idea-capture-input" aria-busy={busy || undefined}>
         <textarea
           id="content-capture"
           value={raw}
@@ -186,6 +186,7 @@ function IdeaCapture({
             setFeedback(null);
             setError(null);
           }}
+          disabled={busy}
         />
         <div className="idea-capture-actions">
           <button className="btn primary content-add" type="button" onClick={submit} disabled={validTitles.length === 0 || tooMany || busy}>
@@ -444,7 +445,13 @@ function IdeaEditor({
 
   return (
     <div className="idea-editor-backdrop" role="presentation" onMouseDown={(event) => event.target === event.currentTarget && onClose()}>
-      <aside className="idea-editor" role="dialog" aria-modal="true" aria-labelledby="idea-editor-title">
+      <aside
+        className="idea-editor"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="idea-editor-title"
+        aria-busy={saving || routingBusy || undefined}
+      >
         <header className="idea-editor-head">
           <div>
             <span className="content-kicker">Shape the idea</span>
@@ -828,7 +835,7 @@ export function ContentStudio({
       )}
       {error && <div className="content-board-error" role="alert">Content Studio could not sync: {error}</div>}
 
-      <div className="content-board" aria-label="Content idea board">
+      <div className="content-board" aria-label="Content idea board" aria-busy={loading || undefined}>
         {STAGES.map((stage) => {
           const columnIdeas = visibleIdeas
             .filter((idea) => idea.stage === stage.id)

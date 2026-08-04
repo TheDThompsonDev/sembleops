@@ -1328,6 +1328,23 @@ export default function App() {
     }
   }, [notifications, permission, refresh]);
 
+  // ponytail: generic packet/mission titles — no private task text in the tab
+  useEffect(() => {
+    const titles: Record<View, string> = {
+      today: "Today",
+      content: "Content Studio",
+      ensemble: "Ensemble",
+      sessions: "Sessions",
+      commitments: "Commitments",
+      approvals: "Approvals",
+      calendar: "Calendar",
+      settings: "Settings",
+      packet: "Agent packet",
+      mission: "Mission",
+    };
+    document.title = `${titles[view]} · Sembleops`;
+  }, [view]);
+
   const decisions = inbox.nags.length + delegations.needs_review.length;
   const selected = useMemo(
     () => inbox.nags.find((n) => n.task.id === selectedTaskId) ?? inbox.nags[0] ?? null,
@@ -1336,6 +1353,9 @@ export default function App() {
   if (authNeeded) return <TokenGate />;
   return (
     <div className={`shell ${view === "content" ? "content-shell" : ""}`}>
+      <a className="skip-link" href="#workspace-main">
+        Skip to main workspace
+      </a>
       <Sidebar
         view={view}
         setView={setView}
@@ -1345,7 +1365,7 @@ export default function App() {
         open={tasks.open.length}
         reviews={delegations.needs_review.length}
       />
-      <main className="main">
+      <main className="main" id="workspace-main" tabIndex={-1}>
         <TopBar
           notifications={notifications}
           permission={permission}

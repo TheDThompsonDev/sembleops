@@ -79,6 +79,25 @@ test("loopback local mode remains available without authentication", () => {
   assert.doesNotThrow(() => assertServerSecurity(config()));
 });
 
+test("health endpoint is available without authentication", async () => {
+  const app = buildServer(deps(config()));
+
+  try {
+    const response = await app.inject({
+      method: "GET",
+      url: "/api/health",
+    });
+
+    assert.equal(response.statusCode, 200);
+
+    assert.deepEqual(response.json(), {
+      status: "Server is healthy",
+    });
+  } finally {
+    await app.close();
+  }
+});
+
 test("cloud and non-loopback modes fail closed without a strong hub token", () => {
   assert.throws(
     () => assertServerSecurity(config({ node: "cloud" })),

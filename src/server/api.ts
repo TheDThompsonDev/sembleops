@@ -310,6 +310,14 @@ export function buildServer(deps: ApiDeps): FastifyInstance {
     });
   }
 
+  // -- health route -- 
+
+  app.get("/api/health", async (req, res) => {
+    return {
+      status: "Server is healthy"
+    };
+  });
+
   app.post<{ Body: { token?: string } }>("/api/login", { bodyLimit: 1024 }, async (req, reply) => {
     if (!hubToken) return { ok: true, auth: "disabled" };
     if (!tokenMatches(req.body?.token, hubToken)) {
@@ -341,7 +349,7 @@ export function buildServer(deps: ApiDeps): FastifyInstance {
 
   const requireWorker = (req: { headers: Record<string, unknown> }): boolean =>
     Boolean(workerToken) && tokenMatches(req.headers["x-worker-token"] as string | undefined, workerToken!);
-
+  
   app.post<{ Body: { agent?: string; projects?: string[] } }>("/api/worker/claim", async (req, reply) => {
     if (!requireWorker(req)) return reply.code(401).send({ error: "unauthorized" });
     workerState.lastSeen = new Date().toISOString();
